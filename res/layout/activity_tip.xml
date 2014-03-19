@@ -6,56 +6,63 @@
     tools:context="com.example.codepath.tipcalculator.TipActivity"
     tools:ignore="MergeRootFrame" >
 
-    <EditText
-        android:id="@+id/etBaseAmount"
-        android:layout_width="270dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="60dp"
-        android:hint="@string/base_amount_hint"
-        android:inputType="numberDecimal" />
-
     <TextView
         android:id="@+id/tvBaseAmountLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etBaseAmount"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
         android:text="@string/base_amount_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <Button
-        android:id="@+id/btn15pc"
-        android:layout_width="wrap_content"
+    <EditText
+        android:id="@+id/etBaseAmount"
+        android:layout_width="256dp"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn10pc"
-        android:layout_alignBottom="@+id/btn10pc"
-        android:layout_toRightOf="@+id/btn10pc"
-        android:onClick="calculateTip"
-        android:text="@string/fifteen_percent" />
+        android:layout_below="@+id/tvBaseAmountLabel"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:hint="@string/base_amount_hint"
+        android:inputType="numberDecimal" >
 
-    <Button
-        android:id="@+id/btn20pc"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/btn15pc"
-        android:layout_alignBottom="@+id/btn15pc"
-        android:layout_toRightOf="@+id/btn15pc"
-        android:onClick="calculateTip"
-        android:text="@string/twenty_percent" />
+        <requestFocus />
+    </EditText>
 
-    <Button
-        android:id="@+id/btn10pc"
+    <RadioGroup
+        android:id="@+id/rgTipPercent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/etBaseAmount"
         android:layout_below="@+id/etBaseAmount"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:onClick="calculateTip"
-        android:text="@string/ten_percent" />
+        android:layout_marginTop="16dp" >
+
+        <RadioButton
+            android:id="@+id/tip10pc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="@string/ten_percent" />
+
+        <RadioButton
+            android:id="@+id/tip15pc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fifteen_percent" 
+            android:checked="true" />
+
+        <RadioButton
+            android:id="@+id/tip20pc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/twenty_percent" />
+
+        <RadioButton
+            android:id="@+id/tipCustom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/custom_percent" />
+    </RadioGroup>
 
     <TextView
         android:id="@+id/tvTipAmount"
@@ -63,19 +70,29 @@
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/tvTipLabel"
         android:layout_alignBottom="@+id/tvTipLabel"
-        android:layout_alignRight="@+id/tvBaseAmountLabel"
-        android:text="0.00"
+        android:layout_marginLeft="16dp"
+        android:layout_toRightOf="@+id/tvTipLabel"
+        android:text=""
         android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <EditText
+        android:id="@+id/etCustomTip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/rgTipPercent"
+        android:layout_alignRight="@+id/etBaseAmount"
+        android:layout_toRightOf="@+id/rgTipPercent"
+        android:layout_marginLeft="8dp"
+        android:inputType="numberDecimal" />
 
     <TextView
         android:id="@+id/tvTipLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/btn15pc"
-        android:layout_marginBottom="60dp"
-        android:layout_marginRight="30dp"
+        android:layout_below="@+id/rgTipPercent"
+        android:layout_marginTop="96dp"
+        android:layout_toLeftOf="@+id/etCustomTip"
         android:text="@string/tip_label"
-        android:textAppearance="?android:attr/textAppearanceLarge" />
-    
-</RelativeLayout>    
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+</RelativeLayout>

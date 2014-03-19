@@ -1,7 +1,5 @@
-Tipper
-======
-
 Android Tip Calculator
+======
 
 **User Stories**:
 

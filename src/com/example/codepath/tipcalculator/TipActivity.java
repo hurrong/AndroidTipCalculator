@@ -20,6 +20,8 @@ public class TipActivity extends Activity {
 	RadioGroup rgTipPercent;
 	TextView etCustomTip;
 	
+	private Double previousTipPercent = 0.15;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -70,33 +72,31 @@ public class TipActivity extends Activity {
 			return;
 		}
 		Double baseAmount = Double.valueOf(etBaseAmount.getText().toString());
-		double tipPercent = 0.15;
+		double tipPercent = 0.0;
 		switch(rgTipPercent.getCheckedRadioButtonId()) {
 			case R.id.tip10pc: tipPercent = 0.10; break;
 			case R.id.tip15pc: tipPercent = 0.15; break;
 			case R.id.tip20pc: tipPercent = 0.20; break;
-			case R.id.tipCustom: tipPercent = getCustomTip(tipPercent); break;
+			case R.id.tipCustom: tipPercent = getCustomTip(); break;
 			default: break;
 		}
 		if (rgTipPercent.getCheckedRadioButtonId() != R.id.tipCustom) {
 			etCustomTip.setTextColor(Color.GRAY);
 		}
+		if (tipPercent != previousTipPercent) {
+			Toast.makeText(getApplicationContext(), "Tip updated!", Toast.LENGTH_SHORT).show();
+			previousTipPercent = tipPercent;
+		}
 		Double tipAmount = baseAmount * tipPercent;
 		tvTipAmount.setText(String.format("%.2f", tipAmount));
 	}
 	
-	private Double getCustomTip(Double tipPercent) {
+	private Double getCustomTip() {
 		String customTipInput = etCustomTip.getText().toString();
 		if (customTipInput.isEmpty()) {
-			return tipPercent;
+			etCustomTip.setTextColor(Color.GRAY);
+			return previousTipPercent;
 		}
-		Double percent = Double.valueOf(customTipInput);
-		if (percent >= 0) {
-			return percent * 0.01;
-		} else {
-			Toast.makeText(getApplicationContext(), "Invalid percentage!", Toast.LENGTH_SHORT).show();
-			rgTipPercent.check(R.id.tip15pc);
-			return null;
-		}
+		return 0.01 * Double.valueOf(customTipInput);
 	}
 }

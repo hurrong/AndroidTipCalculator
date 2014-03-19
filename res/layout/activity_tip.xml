@@ -90,7 +90,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/rgTipPercent"
-        android:layout_marginTop="96dp"
+        android:layout_marginTop="64dp"
         android:layout_toLeftOf="@+id/etCustomTip"
         android:text="@string/tip_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />

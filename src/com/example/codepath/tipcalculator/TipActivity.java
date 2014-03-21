@@ -1,12 +1,14 @@
 package com.example.codepath.tipcalculator;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnFocusChangeListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
@@ -17,6 +19,7 @@ import android.widget.Toast;
 public class TipActivity extends Activity {
 	EditText etBaseAmount;
 	TextView tvTipAmount;
+	TextView tvTotalAmount;
 	RadioGroup rgTipPercent;
 	TextView etCustomTip;
 	
@@ -28,6 +31,7 @@ public class TipActivity extends Activity {
 		setContentView(R.layout.activity_tip);
 		etBaseAmount = (EditText) findViewById(R.id.etBaseAmount);
 		tvTipAmount = (TextView) findViewById(R.id.tvTipAmount);
+		tvTotalAmount = (TextView) findViewById(R.id.tvTotalAmount);
 		rgTipPercent = (RadioGroup) findViewById(R.id.rgTipPercent);
 		rgTipPercent.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 			
@@ -45,6 +49,7 @@ public class TipActivity extends Activity {
 		                event.getAction() == KeyEvent.ACTION_DOWN &&
 		                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
 					calculateTip();
+					hideSoftKeyboard(v);
 					return true;
 				}
 				
@@ -64,6 +69,11 @@ public class TipActivity extends Activity {
 				}
 			}
 		});
+	}
+	
+	public void hideSoftKeyboard(View view){
+		  InputMethodManager imm =(InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		  imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 	}
 	
 	private void calculateTip() {
@@ -89,6 +99,7 @@ public class TipActivity extends Activity {
 		}
 		Double tipAmount = baseAmount * tipPercent;
 		tvTipAmount.setText(String.format("%.2f", tipAmount));
+		tvTotalAmount.setText(String.format("%.2f", tipAmount+baseAmount));
 	}
 	
 	private Double getCustomTip() {

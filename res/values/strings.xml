@@ -12,5 +12,6 @@
     <string name="custom_percent">Custom %:</string>
     <string name="tip_label">Tip is:</string>
     <string name="choose_tip_percentage">Click to choose a tip percentage</string>
+    <string name="totalAmountLabel">Total is:</string>
 
 </resources>

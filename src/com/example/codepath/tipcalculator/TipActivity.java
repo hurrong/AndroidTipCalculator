@@ -1,5 +1,9 @@
 package com.example.codepath.tipcalculator;
 
+import java.math.RoundingMode;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
@@ -17,11 +21,13 @@ import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
 
 public class TipActivity extends Activity {
-	EditText etBaseAmount;
-	TextView tvTipAmount;
-	TextView tvTotalAmount;
-	RadioGroup rgTipPercent;
-	TextView etCustomTip;
+	private static final DecimalFormat formatter = new DecimalFormat("#.00");
+
+	private EditText etBaseAmount;
+	private TextView tvTipAmount;
+	private TextView tvTotalAmount;
+	private RadioGroup rgTipPercent;
+	private TextView etCustomTip;
 	
 	private Double previousTipPercent = 0.15;
 	
@@ -29,6 +35,8 @@ public class TipActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tip);
+		formatter.setRoundingMode(RoundingMode.HALF_UP);
+		formatter.setMaximumFractionDigits(2);
 		etBaseAmount = (EditText) findViewById(R.id.etBaseAmount);
 		tvTipAmount = (TextView) findViewById(R.id.tvTipAmount);
 		tvTotalAmount = (TextView) findViewById(R.id.tvTotalAmount);
@@ -48,11 +56,10 @@ public class TipActivity extends Activity {
 		                actionId == EditorInfo.IME_ACTION_DONE ||
 		                event.getAction() == KeyEvent.ACTION_DOWN &&
 		                event.getKeyCode() == KeyEvent.KEYCODE_ENTER) {
-					calculateTip();
 					hideSoftKeyboard(v);
+					calculateTip();
 					return true;
 				}
-				
 				return false;
 			}
 		};
@@ -98,8 +105,8 @@ public class TipActivity extends Activity {
 			previousTipPercent = tipPercent;
 		}
 		Double tipAmount = baseAmount * tipPercent;
-		tvTipAmount.setText(String.format("%.2f", tipAmount));
-		tvTotalAmount.setText(String.format("%.2f", tipAmount+baseAmount));
+		tvTipAmount.setText(formatter.format(tipAmount));
+		tvTotalAmount.setText(formatter.format(tipAmount+baseAmount));
 	}
 	
 	private Double getCustomTip() {

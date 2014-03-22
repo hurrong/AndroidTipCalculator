@@ -1,8 +1,7 @@
-package com.example.codepath.tipcalculator;
+package com.codepath.tipcalculator;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 import android.app.Activity;
 import android.content.Context;
@@ -19,6 +18,8 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.TextView.OnEditorActionListener;
 import android.widget.Toast;
+
+import com.example.codepath.tipcalculator.R;
 
 public class TipActivity extends Activity {
 	private static final DecimalFormat formatter = new DecimalFormat("#.00");

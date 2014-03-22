@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:windowSoftInputMode="stateVisible"
-    tools:context="com.example.codepath.tipcalculator.TipActivity"
+    tools:context="com.codepath.tipcalculator.TipActivity"
     tools:ignore="MergeRootFrame" >
 
     <TextView

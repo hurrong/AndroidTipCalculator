@@ -11,3 +11,7 @@ Android Tip Calculator
 - (Optional) User can select custom tip amount if desired
 - (Optional) Experiment with trying input widgets to replace the buttons and/or textviews
 - (Optional) Improve the user interface and experience by using images or colors!
+
+**Screenshot**:
+
+![Tip Calculator Screenshot](AndroidTipCalculatorScreenshot.png)
